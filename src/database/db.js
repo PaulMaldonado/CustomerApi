@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 
 const db = mysql.createConnection({
-    host: 'test',
-    user: 'test',
-    password: 'test',
-    database: 'test',
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'customer_api',
 });
 
 // Verificando si se ha hecho exitosamente la conexión a la BD
