@@ -60,3 +60,47 @@ exports.getByIdProducts = ((req, res) => {
     });
 
 });
+
+// Función para eliminar productos
+exports.deleteProduct = ((req, res) => {
+    const id = req.params.id;
+
+    const sql = `DELETE FROM products WHERE id = ${id}`;
+
+    db.query(sql, (error, result) => {
+        if(error) {
+            console.error(error);
+        }
+
+        return res.json({
+            status: 200,
+            message: 'Product deleted successfully'
+        });
+    });
+});
+
+// Función para editar los productos
+exports.updateProduct = ((req, res) => {
+    const id = req.params.id;
+
+    const updateProducts = {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        quantity: req.body.quantity
+    };
+
+    const sql = `UPDATE products SET ? WHERE id = ${id}`;
+
+    db.query(sql, updateProducts, (error, result) => {
+        if(error) {
+            console.error(error);
+        }
+
+        return res.json({
+            result,
+            status: 200,
+            message: 'Product updated successfully'
+        });
+    });
+});
